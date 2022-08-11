@@ -4,7 +4,7 @@ let itemList = document.getElementById('items');
 //function to add items
 function addItems(e){
     e.preventDefault();
-    //get input text entered
+    //get input text entered for item
     let textVal = document.getElementById('item').value;
 
     //get description of the item
