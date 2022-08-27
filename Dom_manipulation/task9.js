@@ -62,6 +62,7 @@ function filterItem(e){
     console.log(filterText);
     //get all list items 
     let items = itemList.getElementsByClassName('list-group-item');
+    console.log(items);
     Array.from(items).forEach(function(item){
         let itemText = item.firstChild.textContent;
         let itemDesc = item.childNodes[2].textContent;

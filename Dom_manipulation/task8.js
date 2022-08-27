@@ -32,6 +32,8 @@ itemList.addEventListener('click', removeItem);
 //event handler function to remove item
 function removeItem(e){
     //check if we clicked on delete button then only remove item
+    console.log(e.target.classList);
+    console.log(e.target);
     if(e.target.classList.contains('delete')){
         if(confirm('Are you sure?')){
            let li = e.target.parentElement; //capture corresponding li of the button which we clicked
