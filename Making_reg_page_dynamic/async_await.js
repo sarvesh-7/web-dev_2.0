@@ -72,6 +72,6 @@ const preMovie = async()=>{
 
         return ticket;
     }
-preMovie().then((m)=>console.log(m));
+preMovie().then((m)=>console.log(`Person 3 : shows the ${m}`));
 console.log('Person 4 : shows the ticket');
 console.log('Person 5 : shows the ticket');
