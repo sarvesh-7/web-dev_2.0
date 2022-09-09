@@ -1,7 +1,7 @@
 console.log('Person 1 : shows the ticket');
 console.log('Person 2 : shows the ticket');
 
-//execute below code without async method
+// execute below code without async method
 // const wifeBringingTicks = ()=>{
 //     return new Promise((resolve,reject)=>{
 //         setTimeout(()=>{
@@ -25,9 +25,17 @@ console.log('Person 2 : shows the ticket');
 //         console.log(`Wife : I want butter on my popcorn`);
 //         return new Promise((resolve,reject)=>resolve('butter'));
 //     });
-//     getButter.then(
-//         (t)=>console.log(t)
+//     const getColdDrinks = getButter.then(
+//         ()=>{
+//             console.log(`Husband : I got butter`);
+//             console.log('Wife : I need cold drink as well');
+//             return new Promise((resolve,reject)=> resolve('cold drinks'));
+//         }
 //     );
+
+//     getColdDrinks.then((t)=>{
+//         console.log(`Husband : I got ${t}`);
+//     })
 
 //execute same code with async method
 
@@ -55,10 +63,15 @@ const preMovie = async()=>{
         let butter = await getButter;
         
         console.log(`Husband : I got some ${butter}`);
-        console.log(`Wife : Lets go`);
+        console.log(`Wife : I want cold drinks as well`);
+
+        const getColdDrinks = new Promise( (resolve,rejet)=>resolve('cold drinks'));
+        let coldDrinks = await getColdDrinks;
+
+        console.log(`Husband : I got ${coldDrinks}`);
 
         return ticket;
-}
+    }
 preMovie().then((m)=>console.log(m));
 console.log('Person 4 : shows the ticket');
 console.log('Person 5 : shows the ticket');
