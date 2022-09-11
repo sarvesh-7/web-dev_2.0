@@ -10,6 +10,7 @@ function saveOnLocalStorage(e){
         userName : name,
         email : email
     }
+    //post user booking details to the cloud
     axios.post("https://crudcrud.com/api/6383f58524c948d59f6591e87bcdcb30/Appointment_data",userDetObj)
     .then(response=>showUsersOnScreen(response.data))
     .catch(err=>{
@@ -23,14 +24,19 @@ window.addEventListener('DOMContentLoaded', displayUsers);
 let listOfUsers = document.getElementById('listOfUsers');
 
 function displayUsers(e){
-    const localStorageObj = localStorage;
-    const localStorageKeys = Object.keys(localStorage);
-    for(let i=0;i<localStorageKeys.length;i++){
-        let user = localStorageObj.getItem(localStorageKeys[i]);
-        let userObj = JSON.parse(user);
-        showUsersOnScreen(userObj);
-    }
+    //fetch booking details of all users using get request to crudcrud
+    axios.get("https://crudcrud.com/api/6383f58524c948d59f6591e87bcdcb30/Appointment_data")
+    .then(res=>{
+        for(let i=0;i<res.data.length;i++){
+            console.log(res.data[i]);
+            showUsersOnScreen(res.data[i]);
+        }
+    })
+    .catch(err=>{
+        document.body.innerHTML = document.body.innerHTML + `<h4 style="text-align: center;">Something went wrong.</h4>`;
+    })  
 }
+
 //function to display user details on screen
 function showUsersOnScreen(userObj){
     let childNode = `<li id = ${userObj.email}>User name: ${userObj.userName}, Email: ${userObj.email}
