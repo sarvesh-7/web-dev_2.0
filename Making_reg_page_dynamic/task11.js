@@ -28,7 +28,6 @@ function displayUsers(e){
     axios.get("https://crudcrud.com/api/6383f58524c948d59f6591e87bcdcb30/Appointment_data")
     .then(res=>{
         for(let i=0;i<res.data.length;i++){
-            console.log(res.data[i]);
             showUsersOnScreen(res.data[i]);
         }
     })
@@ -39,18 +38,26 @@ function displayUsers(e){
 
 //function to display user details on screen
 function showUsersOnScreen(userObj){
-    let childNode = `<li id = ${userObj.email}>User name: ${userObj.userName}, Email: ${userObj.email}
-    <button onClick=deleteUser('${userObj.email}')>Delete</button>
-    <button onClick=editUser('${userObj.email}')>Edit</button>
+    let childNode = `<li id = ${userObj._id}>User name: ${userObj.userName}, Email: ${userObj.email}
+    <button onClick=deleteUser('${userObj._id}')>Delete</button>
+    <button onClick=editUser('${userObj._id}')>Edit</button>
     </li>`;
     listOfUsers.innerHTML = listOfUsers.innerHTML + childNode;
 }
 
-//function to remove user from screen
-function deleteUser(email){
-    localStorage.removeItem(email);
-    let userToBeDeleted = document.getElementById(email);
+//function to remove user from screen and cloud
+function deleteUser(id){
+    // localStorage.removeItem(email);
+    let userToBeDeleted = document.getElementById(id);
     listOfUsers.removeChild(userToBeDeleted);
+    //delete from cloud
+    axios.delete(`https://crudcrud.com/api/6383f58524c948d59f6591e87bcdcb30/Appointment_data/${id}`)
+    .then(res=>{
+        document.body.innerHTML = document.body.innerHTML + `<h4 style="text-align: center;">Booking details removed successfully from server</h4>`;
+    })
+    .catch(err=>{
+        document.body.innerHTML = document.body.innerHTML + `<h4 style="text-align: center;">Something went wrong.</h4>`;
+    })
 }
 
 //function to edit user Details
