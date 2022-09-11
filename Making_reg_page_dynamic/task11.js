@@ -11,11 +11,10 @@ function saveOnLocalStorage(e){
         email : email
     }
     axios.post("https://crudcrud.com/api/6383f58524c948d59f6591e87bcdcb30/Appointment_data",userDetObj)
-    .then(response=>console.log(response))
-    .catch(err=>console.log(err));
-    // userDetObjstr = JSON.stringify(userDetObj);
-    // localStorage.setItem(userDetObj.email, userDetObjstr);
-    showUsersOnScreen(userDetObj);
+    .then(response=>showUsersOnScreen(response.data))
+    .catch(err=>{
+        document.body.innerHTML = document.body.innerHTML + `<h4 style="text-align: center;">Something went wrong.</h4>`;
+    });
 }
 
 //display user details when page is refreshed
