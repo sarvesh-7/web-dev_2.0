@@ -5,6 +5,7 @@ myForm.addEventListener('submit', saveOnCloud);
 //declare booking object id
 let bo_id = 0;
 
+//save user details on cloud
 function saveOnCloud(e){
     e.preventDefault();
     let name = e.target.fname.value;
@@ -14,8 +15,8 @@ function saveOnCloud(e){
         email : email
     }
     if(bo_id===0){
-    //post user booking details to the cloud
-    axios.post("https://crudcrud.com/api/afa8cd56c7a64aae8e9330b03d918844/Appointment_data",userDetObj)
+    //post user booking details to the cloud in case bo_id is 0
+    axios.post("https://crudcrud.com/api/8db0bcef421b4b70bd7a885444a71185/Appointment_data",userDetObj)
     .then(response=>showUsersOnScreen(response.data))
     .catch(err=>{
         document.body.innerHTML = document.body.innerHTML + `<h4 style="text-align: center;">Something went wrong.</h4>`;
@@ -23,10 +24,10 @@ function saveOnCloud(e){
 
     }
     else{
-        // update user booking details to the cloud
-    axios.put(`https://crudcrud.com/api/afa8cd56c7a64aae8e9330b03d918844/Appointment_data/${bo_id}`,userDetObj)
+        // update user booking details to the cloud if bo_id is not initial
+    axios.put(`https://crudcrud.com/api/8db0bcef421b4b70bd7a885444a71185/Appointment_data/${bo_id}`,userDetObj)
     .then(response=>{
-        axios.get(`https://crudcrud.com/api/afa8cd56c7a64aae8e9330b03d918844/Appointment_data/${bo_id}`)
+        axios.get(`https://crudcrud.com/api/8db0bcef421b4b70bd7a885444a71185/Appointment_data/${bo_id}`)
         .then(response=>showUsersOnScreen(response.data))
         .catch(err=>{
             document.body.innerHTML = document.body.innerHTML + `<h4 style="text-align: center;">Something went wrong.</h4>`;
@@ -48,7 +49,7 @@ let listOfUsers = document.getElementById('listOfUsers');
 
 function displayUsers(e){
     //fetch booking details of all users using get request to crudcrud
-    axios.get("https://crudcrud.com/api/afa8cd56c7a64aae8e9330b03d918844/Appointment_data")
+    axios.get("https://crudcrud.com/api/8db0bcef421b4b70bd7a885444a71185/Appointment_data")
     .then(res=>{
         for(let i=0;i<res.data.length;i++){
             showUsersOnScreen(res.data[i]);
@@ -73,7 +74,7 @@ function deleteUser(id){
     let userToBeDeleted = document.getElementById(id);
     listOfUsers.removeChild(userToBeDeleted);
     //delete from cloud
-    axios.delete(`https://crudcrud.com/api/afa8cd56c7a64aae8e9330b03d918844/Appointment_data/${id}`)
+    axios.delete(`https://crudcrud.com/api/8db0bcef421b4b70bd7a885444a71185/Appointment_data/${id}`)
     .then(res=>{
         document.body.innerHTML = document.body.innerHTML + `<h4 style="text-align: center;">Booking details removed successfully from server</h4>`;
     })
@@ -87,7 +88,7 @@ function deleteUser(id){
 function editUser(id){
 
     //fetch booking details of all users using get request to crudcrud
-    axios.get(`https://crudcrud.com/api/afa8cd56c7a64aae8e9330b03d918844/Appointment_data/${id}`)
+    axios.get(`https://crudcrud.com/api/8db0bcef421b4b70bd7a885444a71185/Appointment_data/${id}`)
     .then(res=>{
         let userToBeDeleted = document.getElementById(id);
         listOfUsers.removeChild(userToBeDeleted); 
