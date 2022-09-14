@@ -16,53 +16,44 @@ class BST{
             this.root = newNode;
         }
         else{
-            let p = this.root;
-            let prev;
-            while(p!==null){
-                if(newNode.data>=p.data)
-                {
-                    prev = p;
-                    p = p.right;
-                }
-                else if(newNode.data<p.data)
-                {
-                    prev = p;
-                    p = p.left; 
-                }
-            }
-            if(newNode.data>=prev.data){
-                prev.right = newNode;
-                newNode.left = newNode.right = null;
-            }
-            else if(newNode.data<prev.data)
-            {
-                prev.left = newNode;
-                newNode.left = newNode.right = null;
-            }     
+            this.insertData(this.root,newNode);
         }
     }
+     insertData(root,node){
 
-    search(val){
-        if(this.root==null){
+        if(node.data>=root.data)
+                {
+                    if(root.right===null){
+                        root.right = node;
+                    }
+                    else{
+                        this.insertData(root.right,node);
+                    }
+                }   
+                else{
+                    if(root.left===null){
+                        root.left = node;
+                    }
+                    else{
+                        this.insertData(root.left,node);
+                    }
+                }
+    }
+
+    search(root,val){
+        if(root===null){
             return -1; //search unsuccessful - list is empty
         }
         else{
-            let p = this.root;
-            let prev;
-            while(p!==null){
-                if(val==p.data){
-                    return p;
-                }
-                if(val>p.data)
-                {
-                    p = p.right;
-                }
-                else
-                {
-                    p = p.left; 
-                }
+            if(val>root.data){
+                return this.search(root.right,val);
             }
-            return -1; //search unsuccessful 
+            else if(val<root.data){
+                return this.search(root.left,val);
+            }
+            else{
+                return root;
+            }
         }
     }
     display(node){
@@ -83,5 +74,5 @@ obj.insert(11);
 obj.insert(13);
 obj.insert(19);
 obj.display(obj.root);
-console.log(obj.search(29));
-console.log(obj.search(8));
+console.log(obj.search(obj.root,29));
+console.log(obj.search(obj.root,8));
