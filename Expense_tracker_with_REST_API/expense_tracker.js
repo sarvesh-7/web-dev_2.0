@@ -30,7 +30,7 @@ function onSubmit(e){
 
     if(uniqId === 0) {
         //if unique id is blank it means new expense object needs to be added using post request
-        axios.post(`https://crudcrud.com/api/74a9b0c1968a4f0c9461c40085ae006b22/Expense_details`, expense)
+        axios.post(`https://crudcrud.com/api/74a9b0c1968a4f0c9461c40085ae006b/Expense_details`, expense)
         .then(res=>{
             showExpenses(res.data);
         })
