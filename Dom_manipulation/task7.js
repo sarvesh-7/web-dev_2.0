@@ -5,7 +5,7 @@ console.log(itemList.parentElement);
 itemList.parentElement.style.backgroundColor = '#f4f4f4';
 
 //childNode
-// console.log(itemList.childNodes);
+console.log(itemList.childNodes);
 
 //children similar to childNode except that it does not consider line breaks as child nodes 
 console.log(itemList.children);
@@ -60,7 +60,7 @@ newDiv.appendChild(newDivText);
 
 //Now insert this newly created div tag in the DOM
 let container = document.querySelector('header .container');
-let h1 = document.querySelector('header h1');
+let h1 = document.querySelector('#header-title');
 container.insertBefore(newDiv, h1); // insert newDiv tag inside container element and before h1 element - question 1
 newDiv.style.fontSize = '20px';
 
@@ -72,6 +72,7 @@ let item1 = items.firstElementChild;
 //create textnode
 let newText2 = document.createTextNode('Hello World');
 items.insertBefore(newText2, item1);
+console.log(items);
 
 
 

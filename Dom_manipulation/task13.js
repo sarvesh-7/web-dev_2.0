@@ -3,7 +3,7 @@ let myForm = document.getElementById('my-form');
 myForm.addEventListener('submit', saveOnLocalStorage);
 
 function saveOnLocalStorage(e){
-    // e.preventDefault();
+    e.preventDefault();
     let name = e.target.fname.value;
     let email = e.target.email.value;
     let userDetObj = {

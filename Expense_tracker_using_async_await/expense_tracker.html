@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>Expense Tracker App</title>
+    </head>
+    <body>
+        <form id="exp_form">
+        <label>Choose Expense Amount</label>
+        <input type="number" name="amount" id="exp_amt" min="1">
+        <label>Choose Description</label>
+        <input type="text" name="desc" id="exp_desc">
+        <label>Choose a Category</label>
+        <select id="exp_cat">
+            <option>Entertainment</option>
+            <option>Bills</option>
+            <option>Fuel</option>
+            <option>Food</option>
+        </select>
+        <input type="submit" id="add_exp" value="Add expenses">
+    </form>
+        <ul id="exp_list"></ul>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
+        <script src="expense_tracker.js"></script>
+    </body>
+    
+</html>

@@ -30,7 +30,7 @@ function onSubmit(e){
 
     if(uniqId === 0) {
         //if unique id is blank it means new expense object needs to be added using post request
-        axios.post(`https://crudcrud.com/api/74a9b0c1968a4f0c9461c40085ae006b/Expense_details`, expense)
+        axios.post(`https://crudcrud.com/api/bb80ce7168604745a3b1e54ad34296ad/Expense_details`, expense)
         .then(res=>{
             showExpenses(res.data);
         })
@@ -39,10 +39,10 @@ function onSubmit(e){
         })
     }//if uniq_id is supplied then update existing expense having this unique id using put request
     else{
-        axios.put(`https://crudcrud.com/api/74a9b0c1968a4f0c9461c40085ae006b/Expense_details/${uniqId}`,expense)
+        axios.put(`https://crudcrud.com/api/bb80ce7168604745a3b1e54ad34296ad/Expense_details/${uniqId}`,expense)
         .then(res=>
             {
-                axios.get(`https://crudcrud.com/api/74a9b0c1968a4f0c9461c40085ae006b/Expense_details/${uniqId}`)
+                axios.get(`https://crudcrud.com/api/bb80ce7168604745a3b1e54ad34296ad/Expense_details/${uniqId}`)
                 .then(response=>showExpenses(response.data))
                 .catch(err=>{
                     status.textContent = "Something went wrong!"; 
@@ -70,7 +70,7 @@ function showExpenses(expObj){
 //display all expnses on screen when page refreshes or loaded for the first time
 function displayExpenses(e){
     //fetch all expense details from cloud
-    axios.get(`https://crudcrud.com/api/74a9b0c1968a4f0c9461c40085ae006b/Expense_details`)
+    axios.get(`https://crudcrud.com/api/bb80ce7168604745a3b1e54ad34296ad/Expense_details`)
     .then(res=>{
         for(let i=0;i<res.data.length;i++){
             showExpenses(res.data[i]);
@@ -90,7 +90,7 @@ let expenseToBeDeleted = document.getElementById(id);
 expense_List.removeChild(expenseToBeDeleted);
 
 //remove from cloud
-axios.delete(`https://crudcrud.com/api/74a9b0c1968a4f0c9461c40085ae006b/Expense_details/${id}`)
+axios.delete(`https://crudcrud.com/api/bb80ce7168604745a3b1e54ad34296ad/Expense_details/${id}`)
 .then(res=>{
     console.log(`Expense details removed successfully!`);
 })
@@ -102,7 +102,7 @@ axios.delete(`https://crudcrud.com/api/74a9b0c1968a4f0c9461c40085ae006b/Expense_
 function editExpense(id){
     status.textContent = ""; 
     //get the expense object to be edited from cloud
-    axios.get(`https://crudcrud.com/api/74a9b0c1968a4f0c9461c40085ae006b/Expense_details/${id}`)
+    axios.get(`https://crudcrud.com/api/bb80ce7168604745a3b1e54ad34296ad/Expense_details/${id}`)
     .then(res=>{
         
     //get expense object list item to be edited and remove it from screen
