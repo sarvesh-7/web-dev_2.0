@@ -1,4 +1,4 @@
-    //add expense details on cloud using post/put request
+    //add expense details on cloud using post/put request when clicked on submit button
     let onSubmit = async(e)=>{
         e.preventDefault();
         status.textContent = "";
@@ -17,8 +17,8 @@
         if(uniqId === 0) {
             //if unique id is blank it means new expense object needs to be added using post request
             try{
-                let res = await axios.post(`https://crudcrud.com/api/4eda70a272a9409b9f23fd43a391adf0/Expense_details`, expense)
-                showExpenses(res.data);
+                let res = await axios.post(`https://crudcrud.com/api/60cb55e5bf0b470cb4d052b0b0f8d190/Expense_details`, expense)
+                showExpenses(res.data); //show expense details on screen
             }
             catch{
                 status.textContent = 'Something went wrong!';
@@ -26,9 +26,9 @@
         }//if uniq_id is supplied then update existing expense having this unique id using put request
         else{
             try{
-                await axios.put(`https://crudcrud.com/api/4eda70a272a9409b9f23fd43a391adf0/Expense_details/${uniqId}`,expense);
-                let res = await axios.get(`https://crudcrud.com/api/4eda70a272a9409b9f23fd43a391adf0/Expense_details/${uniqId}`);
-                showExpenses(res.data);
+                await axios.put(`https://crudcrud.com/api/60cb55e5bf0b470cb4d052b0b0f8d190/Expense_details/${uniqId}`,expense);
+                let res = await axios.get(`https://crudcrud.com/api/60cb55e5bf0b470cb4d052b0b0f8d190/Expense_details/${uniqId}`);
+                showExpenses(res.data); //show expense details on screen
             } 
             catch{
                 status.textContent = "Something went wrong!"; 
@@ -53,14 +53,13 @@
         //fetch all expense details from cloud
         try
         {
-            let res = await axios.get(`https://crudcrud.com/api/4eda70a272a9409b9f23fd43a391adf0/Expense_details`);
+            let res = await axios.get(`https://crudcrud.com/api/60cb55e5bf0b470cb4d052b0b0f8d190/Expense_details`);
             for(let i=0;i<res.data.length;i++){
                 showExpenses(res.data[i]);
             }
         }
         catch{
-            document.body.innerHTML = document.body.innerHTML + `<h4 style="text-align:center">
-            Something went wrong</h4>`; 
+            status.textContent = "Something went wrong!";
         }
     }
     
@@ -70,7 +69,7 @@
     
     //remove from cloud
     try{
-        await axios.delete(`https://crudcrud.com/api/4eda70a272a9409b9f23fd43a391adf0567/Expense_details/${id}`)
+        await axios.delete(`https://crudcrud.com/api/60cb55e5bf0b470cb4d052b0b0f8d190/Expense_details/${id}`)
         console.log(`Expense details removed successfully from cloud!`);
         //remove from screen    
         let expenseToBeDeleted = document.getElementById(id);
@@ -86,7 +85,7 @@
         status.textContent = ""; 
         try{
         //get the expense object to be edited from cloud    
-        let res = await axios.get(`https://crudcrud.com/api/4eda70a272a9409b9f23fd43a391adf0/Expense_details/${id}`)
+        let res = await axios.get(`https://crudcrud.com/api/60cb55e5bf0b470cb4d052b0b0f8d190/Expense_details/${id}`)
             
         //get expense object list item to be edited and remove it from screen
         let expObjToBeEdited = document.getElementById(id);
@@ -116,6 +115,7 @@
 
     let form = document.getElementById('exp_form');
 
+    //add event handler for submit button
     form.addEventListener('submit', onSubmit);
     let uniqId = 0; //unique id for each expense to be used to identify if post or put request is needed
     let expense_List = document.getElementById("exp_list");
@@ -124,6 +124,7 @@
     
     let status = document.createElement('div');
     status.style.textAlign = "center";
+    status.style.fontWeight = "bold";
     document.body.appendChild(status);
     
     //display expense details when page refreshed or loaded for the first time
