@@ -2,14 +2,19 @@
     <head>
         <title>Expense Tracker App</title>
         <style>
-            input,select{
-                margin-bottom: 5px;
+            input,select,li{
+                margin-bottom: 10px;
+            }
+            .b1{
+                background-color : #ff2100;
+                color: white;
+                margin-left: 2px;
             }
         </style>
     </head>
     <body>
         <h1>Expense Tracker App</h1>
-        <hr>
+        <hr color = "orange"> 
         <form id="exp_form">
         <label for="exp_amt">Choose Expense Amount</label></br>
         <input type="number" name="amount" id="exp_amt" min="1"></br>
@@ -22,7 +27,7 @@
             <option>Fuel</option>
             <option>Food</option>
         </select></br>
-        <input type="submit" id="add_exp" value="Add expenses">
+        <input type="submit" class="b1" id="add_exp" value="Add expenses">
     </form>
         <ul id="exp_list"></ul>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
