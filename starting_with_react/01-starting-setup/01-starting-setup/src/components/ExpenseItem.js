@@ -1,13 +1,21 @@
+import './ExpenseItem.css'
+
 function ExpenseItem() {
+    const exp_date = new Date(2022, 3, 18).toISOString();
+    const exp_title = "Car Insurance";
+    const exp_price = 294.16;
+    const locationOfExpenditure = "Mumbai";
     return (
-        <div>
-    <h2>Expense Item</h2>
-    <h4>Food Rs 10</h4>
-    <h4>Petrol Rs 100</h4>
-    <h4>Movies Rs 200</h4>
-    </div>
-        
-    );  
+        <div className="expense-item">
+            <div>{exp_date}</div>
+            <div className="expense-item__description">
+                <h2>{exp_title}
+                    {" "}
+                    Location : {locationOfExpenditure}</h2>
+                <div className="expense-item__price">${exp_price}</div>
+            </div>
+        </div>
+    );
 }
 
 export default ExpenseItem;
