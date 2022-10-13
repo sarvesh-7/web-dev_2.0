@@ -1,4 +1,4 @@
-import ExpenseItem from './components/ExpenseItem'
+import Expenses from './components/Expenses';
 const expenses = [
     {
         title: 'Laptop',
@@ -20,27 +20,12 @@ const expenses = [
     },
 ];
 function App() {
-    let expCompArr = [];
-    for (let i = 0; i < expenses.length; i++) {
-        expCompArr.push (
-            <ExpenseItem title={
-                    expenses[i].title
-                }
-                amount={
-                    expenses[i].amount
-                }
-                date={
-                    expenses[i].date
-                }
-            ></ExpenseItem>
-        )
-    }
     return (
         <div>
             <h2>Let's get started!</h2>
-            {expCompArr} 
+            <Expenses items={expenses}/>
         </div>
     );
-}
+};
 
 export default App;
